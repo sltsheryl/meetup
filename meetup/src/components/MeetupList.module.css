@@ -1,0 +1,17 @@
+.meetup-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.meetup-list-container {
+  overflow-x: auto;
+}
+
+.meetupList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  max-height: 600px;
+  overflow-y: auto;
+}

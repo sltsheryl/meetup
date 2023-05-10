@@ -2,11 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import AllMeetupsPage from "./pages/AllMeetups";
 import NewMeetupPage from "./pages/NewMeetups";
 import FavoritesPage from "./pages/Favorites";
+import Layout from "./components/Layout";
 
   function App() {
   return (
-    <div>
-      
+    <Layout>
     <Routes>
         <Route path="/" element={<AllMeetupsPage/>}>
         </Route>
@@ -18,7 +18,7 @@ import FavoritesPage from "./pages/Favorites";
         </Route>
         
         </Routes>
-    </div>
+    </Layout>
   );
 }
 

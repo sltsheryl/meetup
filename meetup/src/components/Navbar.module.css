@@ -1,0 +1,41 @@
+.header {
+  background-color: #2f3136;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem; /* Increase padding for more space */
+}
+
+.header div {
+  font-size: 2rem; /* Increase font size */
+  font-weight: bold; /* Add font weight */
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  margin-right: 2.5rem; /* Increase margin for more space */
+}
+
+ul li:last-child {
+  margin-right: 0;
+}
+
+ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem; /* Increase padding for more space */
+  font-size: 1.2rem; /* Decrease font size */
+  border-radius: 20px; /* Add border radius */
+  transition: background-color 0.2s ease-out; /* Add transition effect */
+}
+
+ul li a:hover {
+  background-color: #677bc4;
+}
