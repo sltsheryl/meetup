@@ -1,5 +1,5 @@
 import MeetupList from "../components/MeetupList";
-
+import { useState } from "react";
 const SAMPLE = [
   {
     id: "1",
@@ -28,6 +28,25 @@ const SAMPLE = [
 ];
 
 function AllMeetupsPage() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadedMeetups, setLoadedMeetups] = useState([SAMPLE]);
+    fetch(
+      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json"
+    ).then(response => {
+        // since we are using firebase, we need to convert the response to json
+        return response.json();
+    }).then(data => {
+        setIsLoading(false);
+        setLoadedMeetups(data);
+    });
+
+    if (isLoading) {
+        return (
+            <section>
+                <h1>Loading...</h1>
+            </section>
+        )
+    }
   return (
       <section>
       <h1>All Meetups</h1>
