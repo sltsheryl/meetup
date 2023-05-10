@@ -1,10 +1,23 @@
-import Card from "./components/Card";
+import { Route, Routes } from "react-router-dom";
+import AllMeetupsPage from "./pages/AllMeetups";
+import NewMeetupPage from "./pages/NewMeetups";
+import FavoritesPage from "./pages/Favorites";
+
   function App() {
   return (
     <div>
-      <h1>List</h1>
-      <Card text="Card 1" />
-      <Card text="Card 2" />
+      
+    <Routes>
+        <Route path="/" element={<AllMeetupsPage/>}>
+        </Route>
+
+        <Route path="/new-meetup" element={<NewMeetupPage />}>
+        </Route>
+
+        <Route path="/favorites" element={<FavoritesPage/>}>
+        </Route>
+        
+        </Routes>
     </div>
   );
 }
