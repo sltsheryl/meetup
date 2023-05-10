@@ -6,6 +6,7 @@ function NewMeetup() {
   const navigate = useNavigate();
   function sendToFirebase(meetupData) {
     fetch(
+      // CAN EDIT: firebase realtime database url
       "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json",
       {
         method: "POST",

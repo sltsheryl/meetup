@@ -8,25 +8,26 @@ function AllMeetupsPage() {
   // useEffect to prevent infinite loop
   useEffect(() => {
     setIsLoading(true);
-fetch(
-  "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json"
-)
-  .then((response) => {
-    // since we are using firebase, we need to convert the response to json
-    return response.json();
-  })
-  .then((data) => {
-    const meetups = [];
-    for (const key in data) {
-      const meetup = {
-        id: key,
-        ...data[key],
-      };
-      meetups.push(meetup);
-    }
-    setIsLoading(false);
-    setLoadedMeetups(meetups);
-  });
+    fetch(
+      // CAN EDIT: firebase realtime database url
+      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json"
+    )
+      .then((response) => {
+        // since we are using firebase, we need to convert the response to json
+        return response.json();
+      })
+      .then((data) => {
+        const meetups = [];
+        for (const key in data) {
+          const meetup = {
+            id: key,
+            ...data[key],
+          };
+          meetups.push(meetup);
+        }
+        setIsLoading(false);
+        setLoadedMeetups(meetups);
+      });
     }, []);
 
     if (isLoading) {
