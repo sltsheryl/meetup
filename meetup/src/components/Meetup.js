@@ -1,6 +1,25 @@
 import classes from "./Meetup.module.css";
+import { useContext } from "react";
+import FavoritesContext from "../store/fav-context";
+import { useState } from "react";
 
 function Meetup(props) {
+  const [clicked, setClicked] = useState(false);
+  const favContext = useContext(FavoritesContext);
+
+    function addToFavorites() {
+        if (!favContext.isFavorite(props.id)) {
+            favContext.addFavorite({
+                id: props.id,
+                title: props.title,
+                image: props.image,
+                address: props.address,
+                description: props.description,
+            });
+            setClicked(true);
+        }
+    }
+
   return (
     <li className={classes.meetup}>
       <div>
@@ -12,7 +31,14 @@ function Meetup(props) {
         <p>{props.description}</p>
       </div>
       <div>
-        <button>To Favorites</button>
+        <button
+          className={
+            favContext.isFavorite(props.id) ? `${classes.clicked}` : ""
+          }
+          onClick={addToFavorites}
+        >
+          {!favContext.isFavorite(props.id) ? "Mark as Favorites" : "Favorite"}
+        </button>
       </div>
     </li>
   );
