@@ -7,7 +7,7 @@ function Meetup(props) {
   const [clicked, setClicked] = useState(false);
   const favContext = useContext(FavoritesContext);
 
-    function addToFavorites() {
+    function removeOrAddToFavorites() {
         if (!favContext.isFavorite(props.id)) {
             favContext.addFavorite({
                 id: props.id,
@@ -17,6 +17,9 @@ function Meetup(props) {
                 description: props.description,
             });
             setClicked(true);
+        } else {
+            favContext.deleteFavorite(props.id);
+            setClicked(false);
         }
     }
 
@@ -35,9 +38,9 @@ function Meetup(props) {
           className={
             favContext.isFavorite(props.id) ? `${classes.clicked}` : ""
           }
-          onClick={addToFavorites}
+          onClick={removeOrAddToFavorites}
         >
-          {!favContext.isFavorite(props.id) ? "Mark as Favorites" : "Favorite"}
+          {!favContext.isFavorite(props.id) ? "Favorites" : "Remove from Favorites"}
         </button>
       </div>
     </li>

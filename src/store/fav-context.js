@@ -5,7 +5,8 @@ const FAVORITES_STORAGE_KEY = "favorites";
 const FavoritesContext = createContext({
   favorites: [],
   addFavorite: (favoriteMeetup) => {},
-  isFavorite: (meetupId) => {},
+  isFavorite: (meetupId) => { },
+  deleteFavorite: (meetupId) => { },
 });
 
 export function FavoritesContextProvider(props) {
@@ -26,16 +27,24 @@ export function FavoritesContextProvider(props) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.concat(favoriteMeetup);
     });
+    
   }
 
   function isFavorite(meetupId) {
     return userFavorites.some((meetup) => meetup.id === meetupId);
   }
 
+  function deleteFavoriteHandler(meetupId) {
+    setUserFavorites((prevUserFavorites) => {
+      return prevUserFavorites.filter((meetup) => meetup.id !== meetupId);
+    });
+  }
+
   const context = {
     favorites: userFavorites,
     addFavorite: addFavoriteHandler,
     isFavorite: isFavorite,
+    deleteFavorite: deleteFavoriteHandler,
   };
 
   return (
