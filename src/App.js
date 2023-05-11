@@ -4,20 +4,16 @@ import NewMeetupPage from "./pages/NewMeetup";
 import FavoritesPage from "./pages/Favorites";
 import Layout from "./components/Layout";
 
-  function App() {
+function App() {
   return (
     <Layout>
-    <Routes>
-        <Route path="/" element={<AllMeetupsPage/>}>
-        </Route>
+      <Routes>
+        <Route path="/" element={<AllMeetupsPage />}></Route>
 
-        <Route path="/new-meetup" element={<NewMeetupPage />}>
-        </Route>
+        <Route path="/new-meetup" element={<NewMeetupPage />}></Route>
 
-        <Route path="/favorites" element={<FavoritesPage/>}>
-        </Route>
-        
-        </Routes>
+        <Route path="/favorites" element={<FavoritesPage />}></Route>
+      </Routes>
     </Layout>
   );
 }

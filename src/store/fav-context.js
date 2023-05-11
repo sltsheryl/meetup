@@ -5,8 +5,8 @@ const FAVORITES_STORAGE_KEY = "favorites";
 const FavoritesContext = createContext({
   favorites: [],
   addFavorite: (favoriteMeetup) => {},
-  isFavorite: (meetupId) => { },
-  deleteFavorite: (meetupId) => { },
+  isFavorite: (meetupId) => {},
+  deleteFavorite: (meetupId) => {},
 });
 
 export function FavoritesContextProvider(props) {
@@ -27,7 +27,6 @@ export function FavoritesContextProvider(props) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.concat(favoriteMeetup);
     });
-    
   }
 
   function isFavorite(meetupId) {
@@ -52,7 +51,6 @@ export function FavoritesContextProvider(props) {
       {props.children}
     </FavoritesContext.Provider>
   );
-   
 }
 
 export default FavoritesContext;

@@ -1,27 +1,53 @@
 import classes from "./Meetup.module.css";
-import { useContext } from "react";
-import FavoritesContext from "../store/fav-context";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Meetup(props) {
+  const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
-  const favContext = useContext(FavoritesContext);
 
-    function removeOrAddToFavorites() {
-        if (!favContext.isFavorite(props.id)) {
-            favContext.addFavorite({
-                id: props.id,
-                title: props.title,
-                image: props.image,
-                address: props.address,
-                description: props.description,
-            });
-            setClicked(true);
-        } else {
-            favContext.deleteFavorite(props.id);
-            setClicked(false);
-        }
-    }
+  useEffect(() => {
+    const meetupId = props.id;
+    const firebaseUrl =
+      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app";
+    const meetupRef = `${firebaseUrl}/meetups/${meetupId}.json`;
+
+    fetch(meetupRef)
+      .then((response) => response.json())
+      .then((meetupData) => {
+        setClicked(meetupData.isFavorite);
+      })
+      .catch((error) => {
+        console.error("Error fetching meetup data:", error);
+      });
+  }, [props.id]);
+
+  function removeOrAddToFavorites() {
+    const meetupId = props.id;
+    const firebaseUrl =
+      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app";
+    const meetupRef = `${firebaseUrl}/meetups/${meetupId}.json`;
+
+    fetch(meetupRef)
+      .then((response) => response.json())
+      .then((meetupData) => {
+        const updatedIsFavorite = !meetupData.isFavorite;
+        meetupData.isFavorite = updatedIsFavorite;
+        setClicked(updatedIsFavorite);
+        return fetch(meetupRef, {
+          method: "PUT",
+          body: JSON.stringify(meetupData),
+        });
+      })
+      .then((response) => response.json())
+      .then((updatedMeetupData) => {
+        console.log("Meetup updated:", updatedMeetupData);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error updating meetup:", error);
+      });
+  }
 
   return (
     <li className={classes.meetup}>
@@ -35,12 +61,10 @@ function Meetup(props) {
       </div>
       <div>
         <button
-          className={
-            favContext.isFavorite(props.id) ? `${classes.clicked}` : ""
-          }
+          className={clicked ? `${classes.clicked}` : ""}
           onClick={removeOrAddToFavorites}
         >
-          {!favContext.isFavorite(props.id) ? "Favorites" : "Remove from Favorites"}
+          {!clicked ? "Favorites" : "Remove from Favorites"}
         </button>
       </div>
     </li>
