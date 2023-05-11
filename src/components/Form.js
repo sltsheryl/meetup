@@ -2,29 +2,29 @@ import classes from "./Form.module.css";
 import { useRef } from "react";
 
 function Form(props) {
-    const titleInputRef = useRef();
-    const imageInputRef = useRef();
-    const addressInputRef = useRef();
-    const descriptionInputRef = useRef();
+  const titleInputRef = useRef();
+  const imageInputRef = useRef();
+  const addressInputRef = useRef();
+  const descriptionInputRef = useRef();
 
-    function submitHandler(event) {
-        // prevent sending unnecessary requests
-        event.preventDefault();
-        const title = titleInputRef.current.value;
-        const image = imageInputRef.current.value;
-        const address = addressInputRef.current.value;
-        const description = descriptionInputRef.current.value;
+  function submitHandler(event) {
+    // prevent sending unnecessary requests
+    event.preventDefault();
+    const title = titleInputRef.current.value;
+    const image = imageInputRef.current.value;
+    const address = addressInputRef.current.value;
+    const description = descriptionInputRef.current.value;
 
-        const newMeetup = {
-            title: title,
-            image: image,
-            address: address,
-            description: description,
-        };
+    const newMeetup = {
+      title: title,
+      image: image,
+      address: address,
+      description: description,
+      isFavorite: false,
+    };
 
-        props.onAddMeetup(newMeetup);
-
-    }
+    props.onAddMeetup(newMeetup);
+  }
   return (
     <div className={classes["form-container"]} onSubmit={submitHandler}>
       <form>

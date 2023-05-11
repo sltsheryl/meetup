@@ -2,8 +2,8 @@ import MeetupList from "../components/MeetupList";
 import { useState, useEffect } from "react";
 
 function AllMeetupsPage() {
-    const [isLoading, setIsLoading] = useState(true);
-    const [loadedMeetups, setLoadedMeetups] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
 
   // useEffect to prevent infinite loop
   useEffect(() => {
@@ -28,15 +28,15 @@ function AllMeetupsPage() {
         setIsLoading(false);
         setLoadedMeetups(meetups);
       });
-    }, []);
+  }, []);
 
-    if (isLoading) {
-        return (
-            <section>
-                <h1>Loading...</h1>
-            </section>
-        )
-    }
+  if (isLoading) {
+    return (
+      <section>
+        <h1>Loading...</h1>
+      </section>
+    );
+  }
   return (
     <section>
       <h1>All Meetups</h1>

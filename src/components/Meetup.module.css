@@ -48,10 +48,9 @@
 }
 
 .meetup button.clicked:hover {
-  background-color: #77ad5a;
+  background-color: #677bc4;
 }
 
 .meetup button:hover {
   background-color: #77ad5a;
 }
-
