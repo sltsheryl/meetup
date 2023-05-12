@@ -5,6 +5,7 @@ import FavoritesPage from "./pages/Favorites";
 import Layout from "./components/Layout";
 
 function App() {
+  
   return (
     <Layout>
       <Routes>
