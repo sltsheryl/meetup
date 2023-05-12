@@ -34,7 +34,14 @@ function Form(props) {
         </div>
         <div>
           <label htmlFor="image">Meetup Image Link</label>
-          <input type="url" required id="imageInputRef" ref={imageInputRef} />
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            required
+            id="imageInputRef"
+            ref={imageInputRef}
+          />
         </div>
         <div>
           <label htmlFor="address">Meetup Address</label>

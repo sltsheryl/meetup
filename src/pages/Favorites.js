@@ -7,21 +7,16 @@ function FavoritesPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      // CAN EDIT: firebase realtime database url
-      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json"
-    )
+    fetch("http://127.0.0.1:8000/api/favorites/")
       .then((response) => response.json())
       .then((data) => {
         const meetups = [];
         for (const key in data) {
-          if (data[key].isFavorite) {
-            const meetup = {
-              id: key,
-              ...data[key],
-            };
-            meetups.push(meetup);
-          }
+          const meetup = {
+            id: key,
+            ...data[key],
+          };
+          meetups.push(meetup);
         }
         setIsLoading(false);
         setFavMeetups(meetups);

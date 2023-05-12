@@ -8,11 +8,8 @@ function Meetup(props) {
 
   useEffect(() => {
     const meetupId = props.id;
-    const firebaseUrl =
-      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app";
-    const meetupRef = `${firebaseUrl}/meetups/${meetupId}.json`;
 
-    fetch(meetupRef)
+    fetch(`http://127.0.0.1:8000/api/meetups/${meetupId}`)
       .then((response) => response.json())
       .then((meetupData) => {
         setClicked(meetupData.isFavorite);
@@ -24,17 +21,14 @@ function Meetup(props) {
 
   function removeOrAddToFavorites() {
     const meetupId = props.id;
-    const firebaseUrl =
-      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app";
-    const meetupRef = `${firebaseUrl}/meetups/${meetupId}.json`;
 
-    fetch(meetupRef)
+    fetch(`http://127.0.0.1:8000/api/meetups/${meetupId}`)
       .then((response) => response.json())
       .then((meetupData) => {
         const updatedIsFavorite = !meetupData.isFavorite;
         meetupData.isFavorite = updatedIsFavorite;
         setClicked(updatedIsFavorite);
-        return fetch(meetupRef, {
+        return fetch(`http://127.0.0.1:8000/api/meetups/${meetupId}/modify-fav/`, {
           method: "PUT",
           body: JSON.stringify(meetupData),
         });

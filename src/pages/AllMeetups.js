@@ -8,12 +8,9 @@ function AllMeetupsPage() {
   // useEffect to prevent infinite loop
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      // CAN EDIT: firebase realtime database url
-      "https://meetup-6acbb-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json"
-    )
+    fetch("http://127.0.0.1:8000/api/meetups/")
       .then((response) => {
-        // since we are using firebase, we need to convert the response to json
+        console.log("HELLO : " + response);
         return response.json();
       })
       .then((data) => {
