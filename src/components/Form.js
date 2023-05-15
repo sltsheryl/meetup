@@ -11,9 +11,11 @@ function Form(props) {
     // prevent sending unnecessary requests
     event.preventDefault();
     const title = titleInputRef.current.value;
-    const image = imageInputRef.current.value;
+   const image = imageInputRef.current.files[0];
     const address = addressInputRef.current.value;
     const description = descriptionInputRef.current.value;
+
+      console.log(image);
 
     const newMeetup = {
       title: title,
