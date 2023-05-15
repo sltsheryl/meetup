@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 function Meetup(props) {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
-
   useEffect(() => {
     const meetupId = props.id;
 
@@ -46,7 +45,10 @@ function Meetup(props) {
   return (
     <li className={classes.meetup}>
       <div>
-        <img src={props.image} alt={props.title} />
+        <img
+          src={"http://127.0.0.1:8000" + props.image}
+          alt={props.title}
+        />
       </div>
       <div>
         <h3>{props.title}</h3>
